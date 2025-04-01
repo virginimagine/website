@@ -1,0 +1,150 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #6e7478;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 23px;
+    line-height: 35px;
+}
+
+.header {
+    color: white;
+    text-align: center;
+    padding: 0;
+    position: relative;
+}
+
+.header h1 {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    left: 50%;
+    top: 63%;
+    transform: translate(-50%, 10px);
+    font-size: 50px;
+    font-weight: 100;
+    letter-spacing: 15px;
+}
+
+.content {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background-image: url('/images/imagine-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+}
+
+.hero iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.hero .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    color: white;
+    border-radius: 100%;
+    cursor: pointer;
+    font-size: 50px;
+    border: none;
+    z-index: 10;
+    color: #fff;
+    height: auto;
+    width: auto;
+}
+
+.imagine-text {
+    text-align: left;
+    margin-bottom: 20px;
+    max-width: 590px;
+    margin: auto;
+}
+
+.imagine-text h2 {
+    text-align: center;
+    margin: 50px auto;
+    font-weight: 100;
+    color: #3b80dd;
+    font-size: 30px;
+    letter-spacing: 10px;
+}
+
+.imagine-list {
+    padding: 0 20px;
+    max-width: 600px;
+    margin: auto;
+    margin-bottom: 100px;
+}
+
+.imagine-list li {
+    margin-bottom: 10px;
+    color: #6e7478;
+
+}
+
+.image-section {
+    text-align: center;
+    margin-bottom: -200px;
+}
+
+.image-section img {
+    max-width: 100%;
+    height: auto;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer a {
+    color: #6e7478;
+    text-decoration: none;
+}
+
+.virgin-galactic-logo {
+    display: block;
+    margin: 20px auto;
+    max-width: 200px;
+}
+
+.footer-blue {
+    background-color: #143f90;
+    height: 100px;
+}
+
+.footer span {
+    display: inline-block;
+    margin: 0 10px;
+}
