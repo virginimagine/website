@@ -1,1 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virgin Galactic Imagine</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/media.css">
+</head>
+
+<body>
+    <div class="header">
+        <h1>IMAGINE</h1>
+        <div class="hero">
+            <button class="play-button" id="customPlayButton"><img src="/images/virgin-play.png"></button>
+            <div id="video-container">
+                <div id="youtube-player"></div>
+                <video id="direct-video" style="display: none; width: 100%; height: 100%;" controls></video>
+            </div>
+        </div>
+    </div>
+    <section style="background-color:#eff3f7 ; padding-top: 60px;">
+        <div class="content">
+            <div class="imagine-text">
+                <p>As the harbinger of space tourism, Virgin Galactic heralded the means to partake in the ultimate private aviation voyage.</p>
+            </div>
+            <div class="imagine-text">
+                <h2>IMAGINE</h2>
+                <ul class="imagine-list">
+                    <li>A bespoke personalized experience exclusive to Virgin Galactic prospects and loyalists.</li>
+                    <li>A captivating social environment embracing Virgin's core values.</li>
+                    <li>Replicating the experience in multiple locations.</li>
+                    <li>Paving the way for future Virgin adventures.</li>
+                </ul>
+            </div>
+            <div class="image-section">
+                <img src="images/virgingalactic.jpg" alt="Virgin Galactic">
+            </div>
+        </div>
+    </section>
+    <section style="background-color: #fff; padding: 200px 0 110px;">
+        <div class="cta-sec">
+            <img src="images/galactic-logo.png" alt="Virgin Galactic Logo" class="virgin-galactic-logo">
+            <div class="footer">
+                <p>Contact Rob Gallo <span>•</span> 1 561-888-0184 <span>•</span> <a href="http://www.pivotalzen.com">www.pivotalzen.com</a> <span>•</span> <a
+                        href="mailto:robgallo@pivotalzen.com">robgallo@pivotalzen.com</a></p>
+            </div>
+        </div>
+    </section>
+    <section class="footer-blue">
+        <div>
+        </div>
+    </section>
+
+    <script>
+        var player;
+        var videoId = ''; // Youtube video ID
+        var directVideoUrl = '/video/rob-virgin.mp4'; // Direct video URL (set this to your video file)
+        var hero = document.querySelector('.hero');
+        var playButton = document.getElementById('customPlayButton');
+        var headerTitle = document.querySelector('.header h1');
+        var coverImage = "url('/images/imagine-hero-bg.jpg')";
+        var youtubePlayerDiv = document.getElementById('youtube-player');
+        var directVideoElement = document.getElementById('direct-video');
+        var videoContainer = document.getElementById('video-container');
+
+        document.getElementById('customPlayButton').addEventListener('click', function () {
+            if (directVideoUrl) {
+                // Play direct video
+                directVideoElement.src = directVideoUrl;
+                directVideoElement.style.display = 'block';
+                youtubePlayerDiv.style.display = 'none';
+                directVideoElement.play();
+
+                playButton.style.display = 'none';
+                hero.style.backgroundImage = 'none';
+                headerTitle.style.display = 'none';
+
+                directVideoElement.addEventListener('ended', function() {
+                    playButton.style.display = 'block';
+                    hero.style.backgroundImage = coverImage;
+                    headerTitle.style.display = 'block';
+                    directVideoElement.style.display = 'none';
+                });
+
+                directVideoElement.addEventListener('pause', function() {
+                    playButton.style.display = 'block';
+                    hero.style.backgroundImage = coverImage;
+                    headerTitle.style.display = 'block';
+                });
+            } else {
+                // Play YouTube video
+                if (!player) {
+                    player = new YT.Player('youtube-player', {
+                        height: '100%',
+                        width: '100%',
+                        videoId: videoId,
+                        playerVars: {
+                            'autoplay': 1,
+                            'controls': 0, // Remove YouTube controls
+                            'showinfo': 0, // Hide video title and uploader
+                            'rel': 0 // Disable related videos
+                        },
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        }
+                    });
+                } else {
+                    player.playVideo();
+                }
+                playButton.style.display = 'none';
+                hero.style.backgroundImage = 'none';
+                headerTitle.style.display = 'none';
+                youtubePlayerDiv.style.display = 'block';
+                directVideoElement.style.display = 'none';
+
+            }
+        });
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+                // Video is paused or ended
+                playButton.style.display = 'block';
+                hero.style.backgroundImage = coverImage;
+                headerTitle.style.display = 'block';
+
+            } else if (event.data == YT.PlayerState.PLAYING) {
+                // Video is playing
+                playButton.style.display = 'none';
+                hero.style.backgroundImage = 'none';
+                headerTitle.style.display = 'none';
+            }
+        }
+
+        function resetToPoster() {
+            playButton.style.display = 'block';
+            hero.style.backgroundImage = coverImage;
+            headerTitle.style.display = 'block';
+            directVideoElement.style.display = 'none';
+            if(player){
+                player.stopVideo();
+            }
+        }
+    </script>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+
+</html>
