@@ -7,9 +7,47 @@
     <title>Virgin Galactic Imagine</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/media.css">
+    <style>
+  /* Modal Styles */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95); /* 95% opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  .password-modal {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  /* Hide the main content initially */
+  #content {
+    display: none;
+  }
+</style>
 </head>
 
 <body>
+
+  <div id="passwordOverlay" class="modal-overlay">
+    <div class="password-modal">
+      <h2>Enter Password</h2>
+      <input type="password" id="passwordInput">
+      <button onclick="checkPassword()">Submit</button>
+    </div>
+  </div>
+
+  <div id="content">
+    <!-- Your main website content goes here -->
     <div class="header">
         <h1>IMAGINE</h1>
         <div class="hero">
@@ -150,6 +188,22 @@
     </script>
 
     <script src="https://www.youtube.com/iframe_api"></script>
-</body>
+  </div>
 
+  <script>
+    function checkPassword() {
+      var enteredPassword = document.getElementById("passwordInput").value;
+      // !!SECURITY RISK!! - Storing the password directly in the code is NOT secure
+      var correctPassword = "YOUR_PASSWORD"; // Replace with your desired password
+
+      if (enteredPassword === correctPassword) {
+        document.getElementById("passwordOverlay").style.display = "none";
+        document.getElementById("content").style.display = "block";
+      } else {
+        alert("Incorrect password!");
+      }
+    }
+  </script>
+
+</body>
 </html>
